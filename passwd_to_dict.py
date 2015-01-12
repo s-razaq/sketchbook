@@ -12,8 +12,9 @@ def main():
     with open('/etc/passwd') as f:
         lines = f.readlines()
         for line in lines:
-            line = line.split(":")
-            passwd_dict[line[0]] = line[2]
+            if not line.startswith("#"):
+                line = line.split(":")
+                passwd_dict[line[0]] = line[2]
 
     # sort dict by keys
     for key in sorted(passwd_dict):
